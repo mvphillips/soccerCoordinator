@@ -61,12 +61,12 @@ func groupPlayers()  {
     let sortedExperienced = experiencedPlayers.sort { ($0[1] as? Double) > ($1[1] as? Double) }
     let sortedNovice = novicePlayers.sort { ($0[1] as? Double) < ($1[1] as? Double) }
     
-    sortPlayers(sortedExperienced, typeOfPlayer: "experienced")
-    sortPlayers(sortedNovice, typeOfPlayer: "novice")
+    sortPlayers(sortedExperienced)
+    sortPlayers(sortedNovice)
 }
 
 //Step Two: Assign each player to team.
-func sortPlayers (groupOfPlayers: [[Any]], typeOfPlayer: String) {
+func sortPlayers (groupOfPlayers: [[Any]]) {
     for player in groupOfPlayers {
         
         players[player[0] as! Int]["assignedTeam"] = currentTeam
@@ -87,7 +87,7 @@ func printLetters() {
     }
 }
 
-//This is not really needed and sloppy, but added to confirm that distribution is correct and heights are even as possible.
+//This is not really needed and doesn't affect anything, but added to confirm that distribution is correct and heights are even as possible.
 func checkingCriteria() {
     var raptorsExperienced = 0
     var sharksExperienced = 0
