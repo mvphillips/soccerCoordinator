@@ -1,24 +1,24 @@
 //Soccer Coordinator
 
 //Step One: Players in own container
-var joeSmith: [Any] = ["Joe Smith", 42.0, true, "Jim & Jan Smith"]
-var jillTanner: [Any] = ["Jill Tanner", 36.0, true, "Clara Tanner"]
-var billBon: [Any] = ["Bill Bon", 43.0, true, "Sara and Jenny Bon"]
-var evaGordon: [Any] = ["Eva Gordon", 45.0, false, "Wendy and Mike Gordon"]
-var mattGill: [Any] = ["Matt Gill", 40.0, false, "Charles and Sylvia Gill"]
-var kimmyStein: [Any] = ["Kimmy Stein", 41.0, false, "Bill and Hillary Stein"]
-var sammyAdams: [Any] = ["Sammy Adams", 45.0, false, "Jeff Adams"]
-var karlSaygan: [Any] = ["Karl Saygan", 42.0, true, "Heather Bledsoe"]
-var suzaneGreenberg: [Any] = ["Suzane Greenberg", 44.0, true, "Henrietta Dumas"]
-var salDali: [Any] = ["Sal Dali", 41.0, false, "Gala Dali"]
-var joeKavalier: [Any] = ["Joe Kavalier", 39.0, false, "Sam and Elaine Kavalier"]
-var benFinkelstein: [Any] = ["Ben Finkelstein", 44.0, false, "Aaron and Jill Finkelstein"]
-var diegoSoto: [Any] = ["Diego Soto", 41.0, true, "Robin and Sarika Soto"]
-var choleAlaska: [Any] = ["Chloe Alaska", 47.0, false, "David and Jamie Alaska"]
-var arnoldWillis: [Any] = ["Arnold Willis", 43.0, false, "Claire Willis"]
-var phillipHelm: [Any] = ["Phillip Helm", 44.0, true, "Thomas Helm and Eva Jones"]
-var lesClay: [Any] = ["Les Clay", 42.0, true, "Wynonna Brown"]
-var herschelKrustofski: [Any] = ["Herschel Krustofski", 45.0, true, "Hyman and Rachel Krustofski"]
+var joeSmith: Dictionary<String, Any> = ["name": "Joe Smith", "height": 42.0, "experience": true, "guardian": "Jim & Jan Smith"]
+var jillTanner: Dictionary<String, Any> = ["name": "Jill Tanner", "height": 36.0, "experience": true, "guardian": "Clara Tanner"]
+var billBon: Dictionary<String, Any> = ["name": "Bill Bon", "height": 43.0, "experience": true, "guardian": "Sara and Jenny Bon"]
+var evaGordon: Dictionary<String, Any> = ["name": "Eva Gordon", "height": 45.0, "experience": false, "guardian": "Wendy and Mike Gordon"]
+var mattGill: Dictionary<String, Any> = ["name": "Matt Gill", "height": 40.0, "experience": false, "guardian": "Charles and Sylvia Gill"]
+var kimmyStein: Dictionary<String, Any> = ["name": "Kimmy Stein", "height": 41.0, "experience": false, "guardian": "Bill and Hillary Stein"]
+var sammyAdams: Dictionary<String, Any> = ["name": "Sammy Adams", "height": 45.0, "experience": false, "guardian": "Jeff Adams"]
+var karlSaygan: Dictionary<String, Any> = ["name": "Karl Saygan", "height": 42.0, "experience": true, "guardian": "Heather Bledsoe"]
+var suzaneGreenberg: Dictionary<String, Any> = ["name": "Suzane Greenberg", "height": 44.0, "experience": true, "guardian": "Henrietta Dumas"]
+var salDali: Dictionary<String, Any> = ["name": "Sal Dali", "height": 41.0, "experience": false, "guardian": "Gala Dali"]
+var joeKavalier: Dictionary<String, Any> = ["name": "Joe Kavalier", "height": 39.0, "experience": false, "guardian": "Sam and Elaine Kavalier"]
+var benFinkelstein: Dictionary<String, Any> = ["name": "Ben Finkelstein", "height": 44.0, "experience": false, "guardian": "Aaron and Jill Finkelstein"]
+var diegoSoto: Dictionary<String, Any> = ["name": "Diego Soto", "height": 41.0, "experience": true, "guardian": "Robin and Sarika Soto"]
+var choleAlaska: Dictionary<String, Any> = ["name": "Chloe Alaska", "height": 47.0, "experience": false, "guardian": "David and Jamie Alaska"]
+var arnoldWillis: Dictionary<String, Any> = ["name": "Arnold Willis", "height": 43.0, "experience": false, "guardian": "Claire Willis"]
+var phillipHelm: Dictionary<String, Any> = ["name": "Phillip Helm", "height": 44.0, "experience": true, "guardian": "Thomas Helm and Eva Jones"]
+var lesClay: Dictionary<String, Any> = ["name": "Les Clay", "height": 42.0, "experience": true, "guardian": "Wynonna Brown"]
+var herschelKrustofski: Dictionary<String, Any> = ["name": "Herschel Krustofski", "height": 45.0, "experience": true, "guardian": "Hyman and Rachel Krustofski"]
 
 //Step One.1: Array of all players
 var players = [joeSmith, jillTanner, billBon, evaGordon, mattGill, kimmyStein, sammyAdams, karlSaygan, suzaneGreenberg, salDali, joeKavalier, benFinkelstein, diegoSoto, choleAlaska, arnoldWillis, phillipHelm, lesClay, herschelKrustofski]
@@ -45,10 +45,10 @@ func groupPlayers()  {
     for player in players {
         
         //Experience preceeds height
-        if player[2] as! Bool {
-            experiencedPlayers.append([count, player[1]])
+        if player["experience"] as! Bool {
+            experiencedPlayers.append([count, player["height"]])
         } else {
-            novicePlayers.append([count, player[1]])
+            novicePlayers.append([count, player["height"]])
         }
         
         count += 1
@@ -69,7 +69,7 @@ func groupPlayers()  {
 func sortPlayers (groupOfPlayers: [[Any]], typeOfPlayer: String) {
     for player in groupOfPlayers {
         
-        players[player[0] as! Int].append(currentTeam)
+        players[player[0] as! Int]["assignedTeam"] = currentTeam
         currentTeam += 1
         
         if currentTeam == teams.count {
@@ -83,11 +83,11 @@ func sortPlayers (groupOfPlayers: [[Any]], typeOfPlayer: String) {
 func printLetters() {
     for player in players {
 
-        print("Hello \(player[3]), \n\(player[0]) has been chosen to play on team \(teams[player[4] as! Int]["name"]!), Go \(teams[player[4] as! Int]["name"]!)!!!.\nFirst practice is \(teams[player[4] as! Int]["trainingDay"]!)\n\n")
+        print("Hello \(player["guardian"]!), \n\(player["name"]!) has been chosen to play on team \(teams[player["assignedTeam"] as! Int]["name"]!), Go \(teams[player["assignedTeam"] as! Int]["name"]!)!!!.\nFirst practice is \(teams[player["assignedTeam"] as! Int]["trainingDay"]!)\n\n")
     }
 }
 
-//This is not really needed and sloppy, but added just to make sure distribution correct and heights are even as possible.
+//This is not really needed and sloppy, but added to confirm that distribution is correct and heights are even as possible.
 func checkingCriteria() {
     var raptorsExperienced = 0
     var sharksExperienced = 0
@@ -102,33 +102,33 @@ func checkingCriteria() {
     var dragonsHeight: Double = 0
     
     for player in players {
-        if player[4] as! Int == 0 {
-            if player[2] as! Bool {
+        if player["assignedTeam"] as! Int == 0 {
+            if player["experience"] as! Bool {
                 raptorsExperienced += 1
             } else {
                 raptorsNovice += 1
             }
-            raptorsHeight += player[1] as! Double
-        } else if player[4] as! Int == 1 {
-            if player[2] as! Bool {
+            raptorsHeight += player["height"] as! Double
+        } else if player["assignedTeam"] as! Int == 1 {
+            if player["experience"] as! Bool {
                 sharksExperienced += 1
             } else {
                 sharksNovice += 1
             }
-            sharksHeight += player[1] as! Double
-        } else if player[4] as! Int == 2 {
-            if player[2] as! Bool {
+            sharksHeight += player["height"] as! Double
+        } else if player["assignedTeam"] as! Int == 2 {
+            if player["experience"] as! Bool {
                 dragonsExperienced += 1
             } else {
                 dragonsNovice += 1
             }
-            dragonsHeight += player[1] as! Double
+            dragonsHeight += player["height"] as! Double
         }
     }
     
-    let raptorsAvg = raptorsHeight / 6
-    let sharkAvg = sharksHeight / 6
-    let dragonsAvg = dragonsHeight / 6
+    let raptorsAvg: Double = raptorsHeight / (Double(players.count) / Double(teams.count))
+    let sharkAvg: Double = sharksHeight / (Double(players.count) / Double(teams.count))
+    let dragonsAvg: Double = dragonsHeight / (Double(players.count) / Double(teams.count))
     
     print ("Raptors summary:\nExperienced \(raptorsExperienced)\nNovice: \(raptorsNovice)\nAvg Height \(raptorsAvg)\n")
     print ("Sharks summary:\nExperienced \(sharksExperienced)\nNovice: \(sharksNovice)\nAvg Height \(dragonsAvg)\n")
@@ -138,35 +138,3 @@ func checkingCriteria() {
 groupPlayers()
 printLetters()
 checkingCriteria()
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
